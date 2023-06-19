@@ -36,6 +36,8 @@ namespace FinalMedievalGame
 
 
         }
+       
+            
 
 
         public static void IntroductionCont()
@@ -69,14 +71,13 @@ namespace FinalMedievalGame
             Console.WriteLine("Twisted trees with gnarled branches reach out, casting long shadows that dance in the dim light.");
             Console.WriteLine("The air is heavy with an otherworldly stillness.");
             Console.ResetColor();
-            Console.ReadKey();
+            Console.ReadKey(); //TODO: Thread.Sleep()
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("As you make your way deeper into the forest, you come across a fork in the path.");
             Console.WriteLine("To your left, a narrow trail disappears into the dense undergrowth.");
             Console.WriteLine("To your right, a wider path seems more traveled.");
             Console.ResetColor();
-            Console.ReadKey();
             Console.WriteLine("Which way will you go?");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("1. Take the narrow trail to the left");
@@ -111,7 +112,7 @@ namespace FinalMedievalGame
                 Console.WriteLine("2. Attempt to evade the creature and continue on your path");
                 Console.ResetColor();
                 Console.Write("Enter your choice (1 or 2): ");
-                Console.ReadLine();
+               
                
                 var battleChoiceF = int.Parse(Console.ReadLine());
 
@@ -296,9 +297,11 @@ namespace FinalMedievalGame
                 Console.WriteLine("1. Yes, put the amulet on and embrace its power.");
                 Console.WriteLine("2. No, leave the amulet behind and continue your journey.");
                 Console.ResetColor();
-                Console.WriteLine("What do you choose?");
+                Console.Write("What do you choose (1-2): ");
 
                 var choiceA = int.Parse(Console.ReadLine());
+
+                Console.Clear();
 
                 if (choiceA == 1)
                 {
@@ -321,11 +324,16 @@ namespace FinalMedievalGame
                     Console.WriteLine("Will you continue to embrace the amulet's power, despite the toll it takes on you?");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("1. Yes I will embrace the amulet's power no matter the cost");
-                    Console.WriteLine("2. No, I will find a way to break free of the amulet's influence and rely on my own abilites.");
+                    Console.WriteLine("2. No, I will find a way to break free of the amulet's influence and rely on my own abilities.");
                     Console.ResetColor();
-                    Console.Write("What will you choose (1 or 2)?");
+                    Console.Write("What will you choose (1-2): ");
+
+
+                    
 
                     var choiceKeepA = int.Parse(Console.ReadLine());
+                    
+                    Console.Clear();
 
                     if (choiceKeepA == 1)
                     {
@@ -338,9 +346,37 @@ namespace FinalMedievalGame
                         Console.ReadKey();
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("After searching, you find a way to no longer wield this mighty power.");
-                        Console.WriteLine("To be free you must fight the otherwordly strength of the Sorceress.");
+                        Console.WriteLine("To be free you must fight the otherworldly foe that is the Sorceress.");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.ForegroundColor= ConsoleColor.Green;
+                        StoryText.SorceressBattle();
 
                     }
+                    else
+                    {
+                        Console.ForegroundColor= ConsoleColor.DarkYellow;
+                        Console.WriteLine("You decide that the allure of the amulets power is not worth the risk of losing yourself entirely.");
+                        Console.WriteLine("Determined to reclaim your own destiny, you resolve to reclaim your own destiny and find a way to be free yourself from its grasp");
+                        Console.WriteLine("Your journey takes you to ancient libraries and forgotten realms.");
+                        Console.WriteLine("You seek knowledge and guidance from those who have encountered similar artifacts.");
+                        Console.WriteLine("Through countless trials and tribulations, you gather the necessary information and resources to break free of the amulet's hold.");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("With unwavering determination, you confront the source of the amulet's enchantment.");
+                        Console.WriteLine("To remove the amulet's burden, a climactic battle ensues, where you face the full force of the amulet's strength,");
+                        Console.WriteLine("a powerful Sorceress");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        StoryText.SorceressBattle();
+
+
+                    }
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("You emerge victorious in your battle with the sorceress.");
+
 
                 }
             }
@@ -401,7 +437,6 @@ namespace FinalMedievalGame
             var sorcerer = new Sorcerer();
             sorcerer.Name = "Sorcerer";
             sorcerer.Health = 100;
-            sorcerer.Health = 100;
             sorcerer.FireBall = "FireBall";
             sorcerer.FireBallDmg = 20;
             sorcerer.FrostBite = "FrostBite";
@@ -421,35 +456,13 @@ namespace FinalMedievalGame
 
 
 
-            //Console.ForegroundColor = ConsoleColor.Yellow;
-            //Console.WriteLine("Please select your class (1-3)");
-            //Console.WriteLine($"1.{warrior.Name}");
-            //Console.WriteLine($"2.{ranger.Name}");
-            //Console.WriteLine($"3.{sorcerer.Name}");
-
-            //var classChoice = int.Parse(Console.ReadLine());
-            //if (classChoice == 1)
-            {
-                //Console.WriteLine($"You have chosen the {warrior.Name} class.");
-
-            }
-            //else if (classChoice == 2)
-            {
-                //Console.WriteLine($"You have chosen the {ranger.Name} class");
-            }
-            //else
-            {
-                //Console.WriteLine($"You have chosen the {sorcerer.Name} class.");
-
-            }
-            //Console.ResetColor();
-            //Console.Clear();
-            var classChoice = StoryText.GetClass();
+            
+            
 
             Console.ForegroundColor = ConsoleColor.Green;
             while (wolvesHealth > 0 && mainCharacterHealth > 0)
             {
-                if (classChoice == 1)
+                if (Fighter.ClassChoice == 1)
                 {
 
                     Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
@@ -489,7 +502,7 @@ namespace FinalMedievalGame
                     }
                     Console.WriteLine($"The Wolves attacked and did {wolvesAttack} damage");
                 }
-                else if (classChoice == 2)
+                else if (Fighter.ClassChoice == 2)
                 {
                     Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
                     Console.WriteLine($"Wolves Health: {wolvesHealth}");
@@ -625,34 +638,12 @@ namespace FinalMedievalGame
 
 
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Please select your class (1-3)");
-            Console.WriteLine($"1.{warrior.Name}");
-            Console.WriteLine($"2.{ranger.Name}");
-            Console.WriteLine($"3.{sorcerer.Name}");
-
-            var classChoice = int.Parse(Console.ReadLine());
-            if (classChoice == 1)
-            {
-               Console.WriteLine($"You have chosen the {warrior.Name} class.");
-
-            }
-            else if (classChoice == 2)
-            {
-               Console.WriteLine($"You have chosen the {ranger.Name} class");
-            }
-            else
-            {
-              Console.WriteLine($"You have chosen the {sorcerer.Name} class.");
-
-            }
-            Console.ResetColor();
-            Console.Clear();
+            
             
             Console.ForegroundColor = ConsoleColor.Green;
             while (dragonHealth > 0 && mainCharacterHealth > 0)
             {
-                if (classChoice == 1)
+                if (Fighter.ClassChoice == 1)
                 {
 
                     Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
@@ -692,7 +683,7 @@ namespace FinalMedievalGame
                     }
                     Console.WriteLine($"The Dragon attacked and did {dragonAttack} damage");
                 }
-                else if (classChoice == 2)
+                else if (Fighter.ClassChoice == 2)
                 {
                     Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
                     Console.WriteLine($"Dragon Health: {dragonHealth}");
@@ -781,7 +772,7 @@ namespace FinalMedievalGame
             Console.WriteLine("You emerged victorious in your battle with the Dragon!");
             Console.WriteLine("Take a moment to catch your breath and tend to any wounds.");
             Console.ResetColor();
-            Console.WriteLine("USE HEALTH POTION");
+            Console.WriteLine("PRESS ENTER TO VIEW INVENTORY");
             Console.ResetColor();
             Console.ReadKey();
             Console.ForegroundColor= ConsoleColor.Yellow;
@@ -857,39 +848,14 @@ namespace FinalMedievalGame
 
 
 
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Please select your class (1-3)");
-            Console.WriteLine($"1.{warrior.Name}");
-            Console.WriteLine($"2.{ranger.Name}");
-            Console.WriteLine($"3.{sorcerer.Name}");
-
-            var classChoice = int.Parse(Console.ReadLine());
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-            Console.ResetColor();
-            ;
-            if (classChoice == 1)
-            {
-                Console.WriteLine($"You have chosen the {warrior.Name} class.");
-
-            }
-            else if (classChoice == 2)
-            {
-                Console.WriteLine($"You have chosen the {ranger.Name} class");
-            }
-            else
-            {
-                Console.WriteLine($"You have chosen the {sorcerer.Name} class.");
-
-            }
+           
             Console.ResetColor();
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Green;
             while (forestDwellerHealth > 0 && mainCharacterHealth > 0)
             {
-                if (classChoice == 1)
+                if (Fighter.ClassChoice == 1)
                 {
 
                     Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
@@ -929,7 +895,7 @@ namespace FinalMedievalGame
                     }
                     Console.WriteLine($"The forest Dweller attacked and did {forestDwellerAttack} damage");
                 }
-                else if (classChoice == 2)
+                else if (Fighter.ClassChoice == 2)
                 {
                     Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
                     Console.WriteLine($"Forest Dweller Health: {forestDwellerHealth}");
@@ -1028,7 +994,185 @@ namespace FinalMedievalGame
         }
         public static void SorceressBattle()
         {
-           
+            //Main Character Stats - Warrior
+            var warrior = new Warrior();
+            warrior.Name = "Warrior";
+            warrior.Health = 75;
+            warrior.StrikeDmg = 25;
+            warrior.StabDmg = 15;
+            warrior.SlashDmg = 21;
+            warrior.Stab = "Stab";
+            warrior.Strike = "Strike";
+            warrior.Slash = "Slash";
+            //Main Character Stats - Ranger
+            var ranger = new Ranger();
+            ranger.Name = "Ranger";
+            ranger.Health = 75;
+            ranger.RegularArrow = "Regular Arrow";
+            ranger.PoisonArrow = "Poison Arrow";
+            ranger.FireArrow = "Fire Arrow";
+            ranger.FireArrowDmg = 25;
+            ranger.RegularArrowDmg = 15;
+            ranger.PoisonArrowDmg = 21;
+            //Main Character Stats - Sorcerer
+            var sorcerer = new Sorcerer();
+            sorcerer.Name = "Sorcerer";
+            sorcerer.Health = 75;
+            sorcerer.FireBall = "FireBall";
+            sorcerer.FireBallDmg = 25;
+            sorcerer.FrostBite = "FrostBite";
+            sorcerer.FrostBiteDmg = 15;
+            sorcerer.LightningBolt = "Lightning Bolt";
+            sorcerer.LightningBoltDmg = 21;
+            //Extra stats
+            var mainCharacterHealth = 75;
+            int damage = 0;
+
+            //Forest Dweller Stats
+            var r = new Random();
+            var sorceressHealth = 100;
+            var sorceressAttack = r.Next(7, 10);
+
+
+
+
+
+            Console.ResetColor();
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            while (sorceressHealth > 0 && mainCharacterHealth > 0)
+            {
+                if (Fighter.ClassChoice == 1)
+                {
+
+                    Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
+                    Console.WriteLine($"Sorceress Health: {sorceressHealth}");
+                    Console.WriteLine($"1. {warrior.Slash}");
+                    Console.WriteLine($"2. {warrior.Stab}");
+                    Console.WriteLine($"3. {warrior.Strike}");
+                    Console.WriteLine("Choose your attack (1-3)");
+                    var attackChoiceW = int.Parse(Console.ReadLine());
+                    Console.WriteLine("-------------------------------");
+
+                    switch (attackChoiceW)
+                    {
+                        case 1:
+                            damage = warrior.SlashDmg;
+                            Console.WriteLine($"{Character.Name} uses {warrior.Slash} and does {warrior.SlashDmg} damage to Sorceress");
+                            break;
+                        case 2:
+                            damage = warrior.StabDmg;
+                            Console.WriteLine($"{Character.Name} uses {warrior.Stab} and does {warrior.StabDmg} damage to Sorceress");
+                            break;
+                        case 3:
+                            damage = warrior.StrikeDmg;
+                            Console.WriteLine($"{Character.Name} uses {warrior.Strike} and does {warrior.StrikeDmg} damage to Sorceress");
+                            break;
+                    }
+                    sorceressHealth -= damage;
+                    if (sorceressHealth < 0)
+                    {
+                        Console.WriteLine("You defeated the Sorceress!");
+                    }
+                    mainCharacterHealth -= sorceressAttack;
+
+                    if (mainCharacterHealth < 0)
+                    {
+                        Console.WriteLine("You were defeated by the Sorceress");
+                    }
+                    Console.WriteLine($"The Sorceress attacked and did {sorceressAttack} damage");
+                }
+                else if (Fighter.ClassChoice == 2)
+                {
+                    Console.WriteLine($"{Character.Name}'s Health: {mainCharacterHealth}");
+                    Console.WriteLine($"Sorceress Health: {sorceressHealth}");
+                    Console.WriteLine($"1. {ranger.FireArrow}");
+                    Console.WriteLine($"2. {ranger.PoisonArrow}");
+                    Console.WriteLine($"3. {ranger.RegularArrow}");
+                    Console.WriteLine("Choose your attack (1-3)");
+                    var attackChoiceR = int.Parse(Console.ReadLine());
+                    Console.WriteLine("-------------------------------");
+
+                    switch (attackChoiceR)
+                    {
+                        case 1:
+                            damage = ranger.FireArrowDmg;
+                            Console.WriteLine($"{Character.Name} uses {ranger.FireArrow} and does {ranger.FireArrowDmg} damage to Sorceress");
+                            break;
+                        case 2:
+                            damage = ranger.PoisonArrowDmg;
+                            Console.WriteLine($"{Character.Name} uses {ranger.PoisonArrow} and does {ranger.PoisonArrowDmg} damage to Sorceress");
+                            break;
+                        case 3:
+                            damage = ranger.RegularArrowDmg;
+                            Console.WriteLine($"{Character.Name} uses {ranger.RegularArrow} and does {ranger.RegularArrowDmg} damage to Sorceress");
+                            break;
+
+                    }
+                    sorceressHealth -= damage;
+                    if (sorceressHealth < 0)
+                    {
+                        Console.WriteLine("You defeated the Sorceress!");
+                    }
+                    mainCharacterHealth -= sorceressAttack;
+
+                    if (mainCharacterHealth < 0)
+                    {
+                        Console.WriteLine("You were defeated by the Sorceress");
+                    }
+                    Console.WriteLine($"The Sorceress attacked and did {sorceressAttack} damage. ");
+
+                }
+                else
+                {
+                    Console.WriteLine($"{Character.Name}'s Health = {mainCharacterHealth}");
+                    Console.WriteLine($"Sorceress Health = {sorceressHealth}");
+                    Console.WriteLine($"1. {sorcerer.FireBall}");
+                    Console.WriteLine($"2. {sorcerer.LightningBolt}");
+                    Console.WriteLine($"3. {sorcerer.FrostBite}");
+                    Console.WriteLine("Choose your attack (1-3)");
+                    var attackChoiceS = int.Parse(Console.ReadLine());
+                    Console.WriteLine("-------------------------------");
+
+                    switch (attackChoiceS)
+                    {
+                        case 1:
+                            damage = sorcerer.FireBallDmg;
+                            Console.WriteLine($"{Character.Name} uses {sorcerer.FireBall} and does {sorcerer.FireBallDmg} damage to Sorceress");
+                            break;
+                        case 2:
+                            damage = sorcerer.LightningBoltDmg;
+                            Console.WriteLine($"{Character.Name} uses {sorcerer.LightningBolt} and does {sorcerer.LightningBoltDmg} damage to Sorceress");
+                            break;
+                        case 3:
+                            damage = sorcerer.FrostBiteDmg;
+                            Console.WriteLine($"{Character.Name} uses {sorcerer.FrostBite} and does {sorcerer.FrostBiteDmg} damage to Sorceress");
+                            break;
+
+
+                    }
+                    sorceressHealth -= damage;
+                    if (sorceressHealth < 0)
+                    {
+                        Console.WriteLine("You defeated the Sorceress!");
+                    }
+                    mainCharacterHealth -= sorceressAttack;
+
+                    if (mainCharacterHealth < 0)
+                    {
+                        Console.WriteLine("You were defeated by the Sorceress");
+                    }
+                    Console.WriteLine($"The Sorceress attacked and did {sorceressAttack} damage.");
+                }
+
+            }
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("You emerged victorious in your battle with the Sorceress!");
+            Console.WriteLine("Take a moment to catch your breath and tend to any wounds.");
+            Console.ResetColor();
+
         }
         public static int GetClass()
         {
@@ -1037,12 +1181,12 @@ namespace FinalMedievalGame
             Ranger ranger = new Ranger();
             ranger.Name = "Ranger";
             Sorcerer sorcerer = new Sorcerer();
-            warrior.Name = "Sorcerer";
+            sorcerer.Name = "Sorcerer";
 
 
 
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ResetColor();
             Console.WriteLine("Please select your class (1-3)");
             Console.WriteLine($"1.{warrior.Name}");
             Console.WriteLine($"2.{ranger.Name}");
@@ -1052,7 +1196,7 @@ namespace FinalMedievalGame
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.ResetColor();
-            ;
+            
             if (classChoice == 1)
             {
                 Console.WriteLine($"You have chosen the {warrior.Name} class.");

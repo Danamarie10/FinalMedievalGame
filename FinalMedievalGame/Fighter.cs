@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinalMedievalGame
 {
-    public class Character
+    public class Fighter
     {
-        public static string Name { get; set; }
+        public static int ClassChoice {get; set;}
 
-    
     }
 }

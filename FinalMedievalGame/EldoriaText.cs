@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalMedievalGame
 {
-    public class Character
+    internal class EldoriaText
     {
-        public static string Name { get; set; }
-
-    
     }
 }

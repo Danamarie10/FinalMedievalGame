@@ -19,8 +19,9 @@ namespace FinalMedievalGame
             string potion = Console.ReadLine();
             potions.Add(potion);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Health potion added Successfully!");
-            Console.ReadKey();
+            Console.WriteLine("Health Potion added Successfully!");
+            //Console.ReadKey();
+            Thread.Sleep(1000);
             
         }
         public static void ViewInventory()
@@ -56,7 +57,7 @@ namespace FinalMedievalGame
                             potions.RemoveAt(potionNumber - 1);
                             Console.ResetColor();
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"'{removedTask}' removed successfully!");
+                            Console.WriteLine($"'{removedTask}' used successfully!");
                             Console.ResetColor();
                         }
                         else
